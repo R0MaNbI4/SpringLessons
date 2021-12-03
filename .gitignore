@@ -1,3 +1,6 @@
 /*/*
 !.gitignore
 !/*/HW
+/*/HW/.idea/*
+/*/HW/target/*
+/*/HW/*.iml
