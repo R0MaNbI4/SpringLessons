@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="resources/style.css">
+    <script>
+        function removeEmptyFields() {
+            var form = document.getElementById("form-filter");
+            var inputs = form.children;
+            var remove = [];
+            for(var i = 0; i < inputs.length; i++) {
+                if(inputs[i].value == "") {
+                    remove.push(inputs[i]);
+                }
+            }
+
+            if(remove.length == inputs.length - 1)
+              return false;
+
+            for(var i = 0; i < remove.length; i++)
+              form.removeChild(remove[i]);
+            return true;
+        }
+    </script>
+    <title>PC Shop</title>
+</head>
+<body>
+    <ul class="menu">
+        <li><a th:href="@{/}">Main</a></li>
+        <li><a th:href="@{products}">Product list</a></li>
+        <li><a th:href="@{add}">Add product</a></li>
+    </ul><br>
+    <form id="form-filter" method="get" onsubmit="return removeEmptyFields()">
+        <p>Price</p>
+        <input class="input-field" name="minPrice" type="number">
+        <input class="input-field" name="maxPrice" type="number"><br>
+        <p>Size</p>
+        <input class="input-field" name="minSize" type="number">
+        <input class="input-field" name="maxSize" type="number"><br>
+        <p>Rotation Speed</p>
+        <input class="input-field" name="minRotationSpeed" type="number">
+        <input class="input-field" name="maxRotationSpeed" type="number"><br>
+        <p>Cache Size</p>
+        <input class="input-field" name="minCacheSize" type="number">
+        <input class="input-field" name="maxCacheSize" type="number"><br>
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </form>
+    <table class="table">
+        <thead>
+        <tr>
+            <td>Price</td>
+            <td>Title</td>
+            <td>Brand</td>
+            <td>Size</td>
+            <td>Rotation Speed</td>
+            <td>Cache Size</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${products}">
+            <td th:text="${product.price}"></td>
+            <td th:text="${product.title}"></td>
+            <td th:text="${product.brand}"></td>
+            <td th:text="${product.size}+' Mb'"></td>
+            <td th:text="${product.rotationSpeed}+' RPM'"></td>
+            <td th:text="${product.cacheSize}+' Mb'"></td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>
