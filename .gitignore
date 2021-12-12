@@ -4,5 +4,7 @@
 !/*/HW
 /*/HW/.idea/*
 /*/HW/.mvn/*
+/*/HW/mvnw
+/*/HW/mvnw.cmd
 /*/HW/target/*
 /*/HW/*.iml
