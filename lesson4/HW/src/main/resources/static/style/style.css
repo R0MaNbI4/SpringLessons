@@ -1,0 +1,50 @@
+#navbarNavAltMarkup {
+    margin-left: 40%; !important
+}
+
+#sidebar {
+    position: absolute;
+    margin-top: 90px;
+}
+
+#sidebar button {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#form-add .buttons {
+    text-align: center;
+}
+
+#sidebar button:last-child,
+#form-add button:last-child {
+    margin-top: 5px;
+}
+
+#form-add button {
+    text-align: center;
+    margin-top: 5px;
+}
+
+.input-group-text-title {
+    margin-top: -18px;
+    border-bottom: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.check-group {
+    margin: -23px 0px 24px 6px;
+    display: none;
+}
+
+.input-group .input-group-text, .form-control {
+    border-top: 0px; !important
+    border-top-left-radius: 0px; !important
+    border-top-right-radius: 0px; !important
+}
+
+.invisible {
+    display: none;
+}
