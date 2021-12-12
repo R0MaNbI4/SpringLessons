@@ -8,22 +8,21 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    int id;
+    Integer id;
     @Column(name = "price")
-    int price;
+    Integer price;
     @Column(name = "title")
     String title;
     @Column(name = "brand")
     String brand;
     @Column(name = "size")
-    int size;
+    Integer size;
     @Column(name = "rotation_speed")
-    int rotationSpeed;
+    Integer rotationSpeed;
     @Column(name = "cache_size")
-    int cacheSize;
+    Integer cacheSize;
 
-    public Product(int id, int price, String title, String brand, int size, int rotationSpeed, int cacheSize) {
-        this.id = id;
+    public Product(Integer price, String title, String brand, Integer size, Integer rotationSpeed, Integer cacheSize) {
         this.price = price;
         this.title = title;
         this.brand = brand;
@@ -35,11 +34,19 @@ public class Product {
     public Product() {
     }
 
-    public int getPrice() {
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
@@ -51,30 +58,6 @@ public class Product {
         this.title = title;
     }
 
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    public int getRotationSpeed() {
-        return rotationSpeed;
-    }
-
-    public void setRotationSpeed(int rotationSpeed) {
-        this.rotationSpeed = rotationSpeed;
-    }
-
-    public int getCacheSize() {
-        return cacheSize;
-    }
-
-    public void setCacheSize(int cacheSize) {
-        this.cacheSize = cacheSize;
-    }
-
     public String getBrand() {
         return brand;
     }
@@ -83,11 +66,27 @@ public class Product {
         this.brand = brand;
     }
 
-    public int getId() {
-        return id;
+    public Integer getSize() {
+        return size;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setSize(Integer size) {
+        this.size = size;
+    }
+
+    public Integer getRotationSpeed() {
+        return rotationSpeed;
+    }
+
+    public void setRotationSpeed(Integer rotationSpeed) {
+        this.rotationSpeed = rotationSpeed;
+    }
+
+    public Integer getCacheSize() {
+        return cacheSize;
+    }
+
+    public void setCacheSize(Integer cacheSize) {
+        this.cacheSize = cacheSize;
     }
 }

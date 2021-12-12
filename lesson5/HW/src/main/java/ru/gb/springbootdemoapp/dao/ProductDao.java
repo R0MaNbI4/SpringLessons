@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.mapping.PersistentClass;
 import org.hibernate.metadata.ClassMetadata;
 import org.springframework.stereotype.Component;
+import ru.gb.springbootdemoapp.dto.Filter;
 import ru.gb.springbootdemoapp.dto.Product;
 
 import javax.persistence.Column;
@@ -13,6 +14,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -67,7 +70,8 @@ public class ProductDao {
         return product;
     }
 
-    public List<Product> findByParameters(HashMap<String, Object> parameters) {
+    public List<Product> findByParameters(Filter filter) {
+        HashMap<String, Object> parameters = getMappedParameters(filter);
         List<Product> products;
         ArrayList<Predicate> predicates = new ArrayList<>();
         try (Session session = sessionFactory.getCurrentSession()) {
@@ -89,5 +93,24 @@ public class ProductDao {
             session.getTransaction().commit();
         }
         return products;
+    }
+
+    private HashMap<String, Object> getMappedParameters(Filter filter) {
+        Method[] methods = filter.getClass().getDeclaredMethods();
+        HashMap<String, Object> parameters = new HashMap<>();
+        for (Method m : methods)
+        {
+            if (m.getName().startsWith("get"))
+            {
+                Object value = 0;
+                try {
+                    value = m.invoke(filter);
+                } catch (IllegalAccessException | InvocationTargetException e) {
+                    e.printStackTrace();
+                }
+                parameters.put(StringUtils.uncapitalize(m.getName().substring(3)), value);
+            }
+        }
+        return parameters;
     }
 }
