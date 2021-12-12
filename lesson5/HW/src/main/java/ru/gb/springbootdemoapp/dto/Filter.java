@@ -2,7 +2,9 @@ package ru.gb.springbootdemoapp.dto;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Filter {
     int minPrice;
@@ -13,7 +15,6 @@ public class Filter {
     int maxRotationSpeed;
     int minCacheSize;
     int maxCacheSize;
-    List<String> brand;
 
     public Filter() {
         minPrice = 0;
@@ -88,13 +89,5 @@ public class Filter {
 
     public void setMaxCacheSize(int maxCacheSize) {
         this.maxCacheSize = maxCacheSize;
-    }
-
-    public List<String> getBrand() {
-        return brand;
-    }
-
-    public void setBrand(List<String> brand) {
-        this.brand = brand;
     }
 }

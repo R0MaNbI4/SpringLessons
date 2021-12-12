@@ -1,12 +1,25 @@
 package ru.gb.springbootdemoapp.dto;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "product")
 public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     int id;
+    @Column(name = "price")
     int price;
+    @Column(name = "title")
     String title;
+    @Column(name = "brand")
     String brand;
+    @Column(name = "size")
     int size;
+    @Column(name = "rotation_speed")
     int rotationSpeed;
+    @Column(name = "cache_size")
     int cacheSize;
 
     public Product(int id, int price, String title, String brand, int size, int rotationSpeed, int cacheSize) {
@@ -17,6 +30,9 @@ public class Product {
         this.size = size;
         this.rotationSpeed = rotationSpeed;
         this.cacheSize = cacheSize;
+    }
+
+    public Product() {
     }
 
     public int getPrice() {
