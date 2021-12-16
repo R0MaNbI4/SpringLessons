@@ -30,10 +30,17 @@ public class ProductDao {
         List<ProductCustomer> productCustomers;
         try (Session session = sessionFactory.getCurrentSession()) {
             session.getTransaction().begin();
-            productCustomers = session.createQuery("SELECT new ru.geekbrains.dto.ProductCustomer(" +
-                                                                    "c," +
-                                                                    "SUM(od.count))" +
-                            "FROM OrderDetails od INNER JOIN Customer c ON c.id IN (SELECT o.customer FROM Order o WHERE o.id = od.order) WHERE od.product.id = :id GROUP BY c")
+            productCustomers = session.createQuery(
+                    "SELECT new ru.geekbrains.dto.ProductCustomer(" +
+                                     "c," +
+                                     "SUM(od.count)) " +
+                                "FROM OrderDetails od " +
+                          "INNER JOIN Customer c " +
+                          "ON c.id IN (SELECT o.customer " +
+                                        "FROM Order o " +
+                                       "WHERE o.id = od.order) " +
+                               "WHERE od.product.id = :id " +
+                            "GROUP BY c")
                     .setParameter("id", id)
                     .getResultList();
             session.getTransaction().commit();
