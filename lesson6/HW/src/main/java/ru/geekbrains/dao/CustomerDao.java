@@ -96,11 +96,4 @@ public class CustomerDao {
         }
         return productStatistics;
     }
-
-//    "SELECT p.title, SUM(od.count) " +
-//    "FROM OrderDetails od " +
-//    "INNER JOIN Product p " +
-//    "ON p.id = od.product_id " +
-//    "WHERE od.order IN (SELECT o.id FROM Order o WHERE o.customer.id = :id " +
-//    "GROUP BY p.title"
 }

@@ -21,7 +21,7 @@ public class OrderDetails {
     @JoinColumn(name = "order_id")
     private Order order;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @MapsId("productId")
     @JoinColumn(name = "product_id")
     private Product product;
