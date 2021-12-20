@@ -36,7 +36,7 @@ public class CustomerDao {
         List<Order> orders;
         try (Session session = sessionFactory.getCurrentSession()) {
             session.getTransaction().begin();
-            orders = session.createQuery("SELECT c.orders FROM Customer c WHERE c.id = :id")
+            orders = session.createQuery("SELECT o FROM Order o JOIN FETCH o.customer WHERE o.customer.id = :id", Order.class)
                     .setParameter("id", id)
                     .getResultList();
             session.getTransaction().commit();
@@ -80,16 +80,15 @@ public class CustomerDao {
         try (Session session = sessionFactory.getCurrentSession()) {
             session.getTransaction().begin();
                         productStatistics = session.createQuery(
-                                    "SELECT new ru.geekbrains.dto.CustomerOrderStatistics(" +
-                                                     "p," +
-                                                     "SUM(od.count)) " +
-                                                "FROM OrderDetails od " +
-                                          "INNER JOIN Product p " +
-                                                  "ON p = od.product " +
-                                               "WHERE od.order IN (SELECT o.id " +
-                                                                    "FROM Order o " +
-                                                                   "WHERE o.customer.id = :id) " +
-                                            "GROUP BY p")
+                                            """
+                                            SELECT new ru.geekbrains.dto.CustomerOrderStatistics(p, SUM(od.count))
+                                            FROM OrderDetails od
+                                            INNER JOIN Product p
+                                            ON p = od.product
+                                            WHERE od.order IN (SELECT o.id
+                                                               FROM Order o
+                                                               WHERE o.customer.id = :id)
+                                            GROUP BY p""", CustomerOrderStatistics.class)
                     .setParameter("id", id)
                     .getResultList();
             session.getTransaction().commit();

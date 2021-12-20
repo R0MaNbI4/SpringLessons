@@ -2,6 +2,7 @@ package ru.geekbrains.service;
 
 import org.springframework.stereotype.Service;
 import ru.geekbrains.dao.CustomerDao;
+import ru.geekbrains.dto.CustomerOrderStatistics;
 import ru.geekbrains.model.Customer;
 import ru.geekbrains.model.Order;
 import ru.geekbrains.model.Product;
@@ -29,7 +30,7 @@ public class CustomerService {
         customerDao.addOrder(customer, products);
     }
 
-    public List getProductStatistic(Long id) {
+    public List<CustomerOrderStatistics> getProductStatistic(Long id) {
         return customerDao.getProductStatistics(id);
     }
 }

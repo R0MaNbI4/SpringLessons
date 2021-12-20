@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import java.util.List;
 
 @Entity
-@Table(name = "customer_order")
+@Table(name = "orders")
 public class Order {
 
     @Id

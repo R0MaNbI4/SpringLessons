@@ -13,8 +13,8 @@ create table if not exists product
     price           int
 );
 
-drop table if exists customer_order cascade;
-create table if not exists customer_order
+drop table if exists orders cascade;
+create table if not exists orders
 (
     id              bigserial primary key,
     customer_id     bigint,
@@ -30,7 +30,7 @@ create table if not exists order_details
     product_count   int,
     price           int,
 
-    foreign key (order_id) references customer_order (id),
+    foreign key (order_id) references orders (id),
     foreign key (product_id) references product (id),
     primary key (order_id, product_id)
 );

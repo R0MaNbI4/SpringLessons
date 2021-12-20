@@ -40,7 +40,7 @@ public class ProductDao {
                                         "FROM Order o " +
                                        "WHERE o.id = od.order) " +
                                "WHERE od.product.id = :id " +
-                            "GROUP BY c")
+                            "GROUP BY c", ProductCustomer.class)
                     .setParameter("id", id)
                     .getResultList();
             session.getTransaction().commit();
