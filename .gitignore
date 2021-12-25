@@ -2,6 +2,7 @@
 /*/*
 !.gitignore
 !/*/HW
+/*/HW/.jpb/*
 /*/HW/.idea/*
 /*/HW/.mvn/*
 /*/HW/mvnw
