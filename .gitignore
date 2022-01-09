@@ -9,3 +9,7 @@
 /*/HW/mvnw.cmd
 /*/HW/target/*
 /*/HW/*.iml
+/*/HW/gradle/*
+/*/HW/gradlew
+/*/HW/gradlew.bat
+/*/HW/settings.gradle
